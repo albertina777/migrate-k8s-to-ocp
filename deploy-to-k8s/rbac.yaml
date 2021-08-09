@@ -6,7 +6,7 @@ metadata:
 rules:
   - apiGroups: ["policy"]
     resources: ["podsecuritypolicies"]
-    resourceNames: ["mlp-psp"]
+    resourceNames: ["custom-mlp-psp"]
     verbs: ["use"]
 ---
 kind: RoleBinding

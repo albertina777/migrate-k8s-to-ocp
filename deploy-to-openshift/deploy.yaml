@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mlp-web-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mlp-web-app
+  template:
+    metadata:
+      labels:
+        app: mlp-web-app
+    spec:
+      serviceAccountName: mlp-sa
+      namespace: mlp-ns
+      containers:
+      - name: mlp-web-app
+        image: IMAGE
+        volumeMounts:
+        - mountPath: /mydata
+          name: my-storage
+        securityContext:
+          runAsUser: 1234
+          runAsGroup: 5678
+      securityContext:
+        fsGroup: 5555
+        supplementalGroups: [5777, 5888]
+      volumes:
+      - name: my-storage
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mlp-service
+  labels:
+    app: mlp-service
+spec:
+  type: NodePort
+  ports:
+    - port: 3000
+      nodePort: 32600
+  selector:
+    app: mlp-web-app      

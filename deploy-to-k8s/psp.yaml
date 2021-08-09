@@ -1,7 +1,7 @@
 apiVersion: policy/v1beta1
 kind: PodSecurityPolicy
 metadata:
-  name: mlp-psp
+  name: custom-mlp-psp
 spec:
   privileged: false
   runAsUser:

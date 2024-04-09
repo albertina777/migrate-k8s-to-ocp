@@ -1,0 +1,9 @@
+app:
+  replicas: 1
+  host: example.kubernetes.testing
+  backend:
+    memory: 512Mi
+    cpu: 50m
+  frontend:
+    memory: 128Mi
+    cpu: 50m
